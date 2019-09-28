@@ -1,0 +1,60 @@
+<?php
+ 
+$dataPoints = array(
+	array("label"=> 2019, "y"=> 5),
+	array("label"=> 1998, "y"=> 4),
+	array("label"=> 1999, "y"=> 3),
+	array("label"=> 2000, "y"=> 284918.9),
+	array("label"=> 2001, "y"=> 325574.7),
+	array("label"=> 2002, "y"=> 254689.8),
+	array("label"=> 2003, "y"=> 303909),
+	array("label"=> 2004, "y"=> 335092.9),
+	array("label"=> 2005, "y"=> 408128),
+	array("label"=> 2006, "y"=> 300992.2),
+);
+	
+?>
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
+ 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Nombre de connexions journalières :"
+	},
+	axisX:{
+		 title: "Date(s)",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+	},
+	axisY:{
+		title: "Nombre de connexions",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+	},
+	toolTip:{
+		enabled: false
+	},
+	data: [{
+		type: "area",
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+ 
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>                              
